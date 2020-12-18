@@ -1,20 +1,14 @@
-import React from 'react';
+import React from 'react'
 
-import {Divider, TopNavigation} from '@ui-kitten/components';
-import BookList from './BookList';
-import HomeSearch from './HomeSearch';
+import { Divider, TopNavigation } from '@ui-kitten/components'
+import BookList from './BookList'
 
-export const HomeScreen = ({navigation}) => {
-  const navigateDetails = () => {
-    navigation.navigate('Details');
-  };
-
-  return (
-    <>
-      <TopNavigation title="Home" alignment="center" />
-      <Divider />
-      <HomeSearch />
-      <BookList />
-    </>
-  );
-};
+export const HomeScreen = ({ navigation }) => {
+	return (
+		<>
+			<TopNavigation title='Book Recommendations' alignment='center' />
+			<Divider />
+			<BookList />
+		</>
+	)
+}

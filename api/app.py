@@ -7,10 +7,10 @@ import flask
 from flask import request, jsonify
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 bookDF=pd.read_csv('books.csv', error_bad_lines=False) 
-bookDF=bookDF.drop(['image_url','small_image_url','title','best_book_id','isbn','isbn13'], axis=1)
+bookDF=bookDF.drop(['small_image_url','title','best_book_id','isbn','isbn13'], axis=1)
 ratingsDF = pd.read_csv('ratings.csv', error_bad_lines=False) 
 
 listOfDictonaries=[]
@@ -43,6 +43,7 @@ def getBookDetails(bookID):
     return {
         'title': bookDF[bookDF['id']==bookID]['original_title'].values[0],
         'author': bookDF[bookDF['id']==bookID]['authors'].values[0],
+        'image': bookDF[bookDF['id']==bookID]['image_url'].values[0],
         'bookId': bookID
     }
 
@@ -63,7 +64,7 @@ if __name__ == '__main__':
         }
         return jsonify(results)
 
-    app.run()
+    app.run(host='0.0.0.0')
 
 
 

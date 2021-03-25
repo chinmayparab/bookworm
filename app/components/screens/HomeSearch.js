@@ -14,6 +14,24 @@ const movies = [
   {title: 'The Matrix'},
   {title: 'Inception'},
   {title: 'Interstellar'},
+  {title: 'Don Quixote'},
+  {title: 'Lord of the Rings'},
+  {title: 'Legend of Zelda'},
+  {title: 'Harry Potter and the Sorcerer’s Stone (1997)'},
+
+  {title: 'Harry Potter and the Chamber of Secrets (1998)'},
+
+  {title: 'Harry Potter and the Prisoner of Azkaban (1999)'},
+
+  {title: 'Harry Potter and the Goblet of Fire (2000)'},
+
+  {title: 'Harry Potter and the Order of the Phoenix (2003)'},
+
+  {title: 'Harry Potter and the Half-Blood Prince (2005)'},
+
+  {title: 'Harry Potter and the Deathly Hallows (2007)'},
+
+  {title: 'Harry Potter and the Cursed Child (2016)'},
 ];
 
 const filter = (item, query) =>

@@ -1,65 +1,63 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {HomeScreen} from '../screens/Home';
-import DetailsScreen from '../screens/Details';
-import {StyleService, useStyleSheet} from '@ui-kitten/components';
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { HomeScreen } from '../screens/Home'
+import DetailsScreen from '../screens/Details'
+import { StyleService, useStyleSheet } from '@ui-kitten/components'
 
 const SunIcon = (props) => (
-  <Icon {...props} animation="zoom" name="brightness-5" />
-);
+  <Icon {...props} animation='zoom' name='brightness-5' />
+)
 const MoonIcon = (props) => (
-  <Icon {...props} animation="zoom" name="brightness-3" />
-);
-const HomeIcon = (props) => <Icon {...props} animation="zoom" name="home" />;
+  <Icon {...props} animation='zoom' name='brightness-3' />
+)
+const HomeIcon = (props) => <Icon {...props} animation='zoom' name='home' />
 const CategoryIcon = (props) => (
-  <Icon {...props} animation="zoom" name="shape" />
-);
-const BrandIcon = (props) => <Icon {...props} animation="zoom" name="basket" />;
-const SettingsIcon = (props) => <Icon {...props} animation="zoom" name="cog" />;
-const LogoutIcon = (props) => (
-  <Icon {...props} animation="zoom" name="logout" />
-);
+  <Icon {...props} animation='zoom' name='shape' />
+)
+const BrandIcon = (props) => <Icon {...props} animation='zoom' name='basket' />
+const SettingsIcon = (props) => <Icon {...props} animation='zoom' name='cog' />
+const LogoutIcon = (props) => <Icon {...props} animation='zoom' name='logout' />
 
-const {Navigator, Screen} = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator()
 
-const MainNavigator = ({isDark, setDark}) => {
-  const styles = useStyleSheet(themedStyles);
+const MainNavigator = ({ isDark, setDark }) => {
+  const styles = useStyleSheet(themedStyles)
 
-  const Header = ({navigation}) => {
+  const Header = ({ navigation }) => {
     const handleAuthPress = () => {
       if (user && (user.email || user.phoneNumber)) {
-        navigation.navigate('Account');
+        navigation.navigate('Account')
       } else {
-        navigation.navigate('Auth');
+        navigation.navigate('Auth')
       }
-    };
+    }
 
     return (
       <>
         <ImageBackground
           style={styles.header}
-          source={{uri: 'https://picsum.photos/400/200'}}>
+          source={{ uri: 'https://picsum.photos/400/200' }}
+        >
           <Layout style={styles.backdrop}>
             <Button
               style={styles.button}
-              appearance="ghost"
+              appearance='ghost'
               accessoryLeft={isDark ? SunIcon : MoonIcon}
               onPress={() => setDark(!isDark)}
-              size="giant"
+              size='giant'
             />
-            <Text style={styles.headerText} category="h3">
+            <Text style={styles.headerText} category='h3'>
               Bookworm
             </Text>
           </Layout>
         </ImageBackground>
         <TouchableOpacity onPress={handleAuthPress}>
-          <Layout level="2" style={styles.auth}>
+          <Layout level='2' style={styles.auth}>
             <View>
-              <Text numberOfLines={1} category="h5">
+              <Text numberOfLines={1} category='h5'>
                 Welcome!
               </Text>
-              <Text numberOfLines={1} category="s2">
+              <Text numberOfLines={1} category='s2'>
                 'Sign in for a better experience'
               </Text>
             </View>
@@ -67,40 +65,40 @@ const MainNavigator = ({isDark, setDark}) => {
         </TouchableOpacity>
         <Divider />
       </>
-    );
-  };
+    )
+  }
 
-  const DrawerContent = ({navigation, state}) => (
+  const DrawerContent = ({ navigation, state }) => (
     <Drawer
       selectedIndex={state.index < 5 ? new IndexPath(state.index) : null}
-      header={() => <Header navigation={navigation} />}>
+      header={() => <Header navigation={navigation} />}
+    >
       <DrawerItem
-        title="Home"
+        title='Home'
         accessoryLeft={HomeIcon}
         onPress={() => navigation.navigate('Home')}
       />
-      <DrawerItem title="Shop By Category" accessoryLeft={CategoryIcon} />
-      <DrawerItem title="Shop By Authors" accessoryLeft={BrandIcon} />
+      <DrawerItem title='Shop By Category' accessoryLeft={CategoryIcon} />
+      <DrawerItem title='Shop By Authors' accessoryLeft={BrandIcon} />
 
       <Divider />
-      <DrawerItem title="Settings" accessoryLeft={SettingsIcon} />
-      <DrawerItem title="Logout" accessoryLeft={LogoutIcon} />
+      <DrawerItem title='Settings' accessoryLeft={SettingsIcon} />
+      <DrawerItem title='Logout' accessoryLeft={LogoutIcon} />
     </Drawer>
-  );
+  )
   const HomeNavigator = () => (
-    <NavigationContainer>
-      <Navigator
-        headerMode="none"
-        drawerContent={(props) => <DrawerContent {...props} />}>
-        <Screen name="Home" component={HomeScreen} />
-        <Screen name="Details" component={DetailsScreen} />
-      </Navigator>
-    </NavigationContainer>
-  );
+    <Navigator
+      headerMode='none'
+      drawerContent={(props) => <DrawerContent {...props} />}
+    >
+      <Screen name='Home' component={HomeScreen} />
+      <Screen name='Details' component={DetailsScreen} />
+    </Navigator>
+  )
 
-  return <HomeNavigator />;
-};
-export default MainNavigator;
+  return <HomeNavigator />
+}
+export default MainNavigator
 
 const themedStyles = StyleService.create({
   header: {
@@ -135,4 +133,4 @@ const themedStyles = StyleService.create({
   authArrow: {
     height: 30,
   },
-});
+})
